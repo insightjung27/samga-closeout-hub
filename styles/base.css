@@ -1,0 +1,72 @@
+/* 삼가 상주 장례 마감 허브 — 공통 디자인 토큰·베이스
+   명세 §5 절제 팔레트: 차분·존엄·비상업. 레드·세일·카운트다운 금지. WCAG AA. */
+:root{
+  /* 표면·잉크 */
+  --bg:        #F6F4EF;   /* 따뜻한 오프화이트 */
+  --surface:   #FFFFFF;
+  --surface-2: #FBFAF7;
+  --text:      #24241F;   /* 차콜 */
+  --text-2:    #55534C;   /* 보조 본문 */
+  --text-3:    #86847C;   /* 캡션·муted */
+  /* 행동·상태 (절제) */
+  --primary:   #2E3A4E;   /* 짙은 블루그레이/네이비 — 주요 행동 */
+  --primary-2: #3C4A60;
+  --primary-ink:#FFFFFF;
+  --secondary: #5E6E82;   /* 연한 블루그레이 — 보조 */
+  --accent-soft:#EAEEF3;  /* 아주 옅은 블루그레이 배경 */
+  --success:   #4E7362;   /* 채도 낮은 그린 */
+  --stop:      #7A3B3B;   /* 짙은 버건디 — 위험/Stop (레드 아님) */
+  --stop-soft: #F1E7E5;
+  --border:    #DCDFE4;   /* 연한 쿨그레이 */
+  --border-2:  #E8E9EC;
+  /* 배지 */
+  --badge-bg:  #ECE9E2;
+  --badge-ink: #6B6459;
+  /* 타이포 */
+  --font: "Pretendard", "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI", system-ui, sans-serif;
+  --fs-hero: clamp(28px, 4.2vw, 46px);
+  --fs-h1:   clamp(24px, 3.2vw, 34px);
+  --fs-h2:   clamp(20px, 2.4vw, 26px);
+  --fs-h3:   19px;
+  --fs-body: 17px;
+  --fs-sm:   15px;
+  --fs-cap:  13.5px;
+  --lh:      1.72;
+  --radius:  14px;
+  --radius-sm: 10px;
+  --shadow:  0 1px 3px rgba(20,20,18,.06), 0 8px 28px rgba(20,20,18,.05);
+  --maxw:    1080px;
+}
+*{ box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:var(--font); font-size:var(--fs-body); line-height:var(--lh);
+  -webkit-font-smoothing:antialiased; letter-spacing:-.01em;
+}
+h1,h2,h3,h4{ line-height:1.28; letter-spacing:-.02em; margin:0; font-weight:800; }
+h1{ font-size:var(--fs-h1); } h2{ font-size:var(--fs-h2); } h3{ font-size:var(--fs-h3); font-weight:700; }
+p{ margin:0 0 .9em; color:var(--text-2); }
+a{ color:var(--primary); text-decoration:none; }
+img{ max-width:100%; }
+:focus-visible{ outline:3px solid var(--secondary); outline-offset:2px; border-radius:6px; }
+
+/* 공통 컴포넌트 */
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:0 22px; }
+.badge{ display:inline-flex; align-items:center; gap:6px; font-size:var(--fs-cap); font-weight:700;
+  color:var(--badge-ink); background:var(--badge-bg); border-radius:999px; padding:4px 11px; letter-spacing:0; }
+.badge.warn{ color:var(--stop); background:var(--stop-soft); }
+.badge.ok{ color:var(--success); background:#E6EEEA; }
+.card{ background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow); }
+.btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; padding:12px 22px;
+  border-radius:12px; font-weight:700; font-size:var(--fs-body); cursor:pointer; border:1px solid transparent;
+  background:var(--primary); color:var(--primary-ink); transition:background .15s, transform .05s; }
+.btn:hover{ background:var(--primary-2); }
+.btn:active{ transform:translateY(1px); }
+.btn.ghost{ background:transparent; color:var(--primary); border-color:var(--border); }
+.btn.ghost:hover{ background:var(--accent-soft); }
+.btn.quiet{ background:transparent; color:var(--text-3); border-color:transparent; min-height:40px; padding:8px 12px; }
+.disclaimer{ font-size:var(--fs-cap); color:var(--text-3); line-height:1.6; }
+.hr{ height:1px; background:var(--border-2); border:0; margin:26px 0; }
+.eyebrow{ font-size:var(--fs-cap); font-weight:800; letter-spacing:.04em; color:var(--secondary); text-transform:none; }
+@media (prefers-reduced-motion: reduce){ *{ animation:none !important; transition:none !important; } }

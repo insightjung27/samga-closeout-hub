@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>상주 장례 마감 허브 — 요약 | 삼가 신규사업 가설</title>
+<meta name="description" content="삼가 기존 자산을 상주의 장례 마무리 행동과 사업 결과로 연결하는 신규사업 가설. 가상 데이터·검증 전 프로토타입.">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="./styles/base.css">
+<style>
+  .topnav{ position:sticky; top:0; z-index:20; background:rgba(246,244,239,.9); backdrop-filter:saturate(1.2) blur(8px); border-bottom:1px solid var(--border); }
+  .topnav .row{ display:flex; align-items:center; justify-content:space-between; height:60px; gap:14px; }
+  .brand{ font-weight:800; letter-spacing:-.02em; display:flex; align-items:center; gap:9px; }
+  .brand .dot{ width:9px; height:9px; border-radius:50%; background:var(--primary); display:inline-block; }
+  .navlinks{ display:flex; gap:8px; }
+  .navlinks a{ font-size:var(--fs-sm); font-weight:700; color:var(--text-2); padding:8px 12px; border-radius:9px; }
+  .navlinks a:hover{ background:var(--accent-soft); color:var(--primary); }
+  .navlinks a.cur{ color:var(--primary); background:var(--accent-soft); }
+  .hero{ padding:56px 0 34px; }
+  .hero .eyebrow{ margin-bottom:14px; }
+  .hero h1{ font-size:var(--fs-hero); max-width:20ch; margin-bottom:16px; }
+  .hero .lead{ font-size:var(--fs-h3); color:var(--text-2); max-width:60ch; margin-bottom:22px; }
+  .flags{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:26px; }
+  .enter{ display:grid; grid-template-columns:1fr; gap:14px; margin:8px 0 8px; }
+  @media(min-width:720px){ .enter{ grid-template-columns:1fr 1fr; } }
+  .enter-card{ display:flex; flex-direction:column; gap:8px; text-decoration:none; color:inherit; }
+  .enter-card:hover{ border-color:var(--secondary); }
+  .enter-card .ec-top{ display:flex; align-items:center; gap:10px; }
+  .enter-card .ec-ic{ width:38px; height:38px; border-radius:10px; background:var(--accent-soft); display:grid; place-items:center; font-size:19px; }
+  .enter-card h3{ font-size:var(--fs-h3); }
+  .enter-card p{ margin:0; font-size:var(--fs-sm); }
+  .enter-card .go{ margin-top:6px; font-weight:700; color:var(--primary); font-size:var(--fs-sm); }
+  section.blk{ padding:30px 0; }
+  section.blk h2{ margin-bottom:6px; }
+  section.blk .sub{ color:var(--text-3); font-size:var(--fs-sm); margin-bottom:20px; }
+  .assets{ display:grid; grid-template-columns:1fr; gap:12px; }
+  @media(min-width:640px){ .assets{ grid-template-columns:1fr 1fr; } }
+  @media(min-width:960px){ .assets{ grid-template-columns:1fr 1fr 1fr; } }
+  .asset{ padding:16px 18px; }
+  .asset .an{ font-weight:700; margin-bottom:4px; }
+  .asset .am{ font-size:var(--fs-cap); color:var(--text-3); }
+  .flow{ display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
+  .flow .step{ background:var(--surface); border:1px solid var(--border); border-radius:999px; padding:9px 15px; font-weight:700; font-size:var(--fs-sm); }
+  .flow .step.first{ background:var(--primary); color:var(--primary-ink); border-color:var(--primary); }
+  .flow .arw{ color:var(--text-3); font-weight:700; }
+  .gps{ display:grid; grid-template-columns:1fr; gap:14px; }
+  @media(min-width:820px){ .gps{ grid-template-columns:1fr 1fr 1fr; } }
+  .gps .g{ border-top:3px solid var(--success); }
+  .gps .p{ border-top:3px solid var(--secondary); }
+  .gps .s{ border-top:3px solid var(--stop); }
+  .gps h3{ margin-bottom:10px; }
+  .gps ul{ margin:0; padding-left:18px; color:var(--text-2); font-size:var(--fs-sm); }
+  .gps li{ margin-bottom:6px; }
+  .metrics{ display:grid; grid-template-columns:1fr; gap:14px; }
+  @media(min-width:720px){ .metrics{ grid-template-columns:1fr 1fr; } }
+  .metric .ml{ font-weight:700; margin-bottom:4px; }
+  .metric .md{ font-size:var(--fs-sm); color:var(--text-2); }
+  footer{ padding:40px 0 60px; border-top:1px solid var(--border); margin-top:20px; }
+</style>
+</head>
+<body>
+<nav class="topnav"><div class="wrap row">
+  <div class="brand"><span class="dot"></span>상주 장례 마감 허브</div>
+  <div class="navlinks">
+    <a href="./index.html" class="cur">요약</a>
+    <a href="./deck.html">발표자료</a>
+    <a href="./prototype.html">프로토타입</a>
+  </div>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">삼가 · 기존 자산 연결형 신규사업 가설</div>
+  <h1>장례에서 끝나던 기능을, 상주의 마무리 행동과 삼가의 사업 결과로 연결합니다.</h1>
+  <p class="lead">새 서비스를 하나 더 만드는 것이 아니라, 이미 가진 부고·ERP·답례·장지·상담 자산 사이의 <b>단절을 하나의 행동 흐름으로 연결</b>해 사용자 가치와 사업 성과를 함께 검증합니다.</p>
+  <div class="flags">
+    <span class="badge">가설</span>
+    <span class="badge">가상 데이터</span>
+    <span class="badge">검증 전</span>
+    <span class="badge warn">실제 서비스 아님</span>
+  </div>
+  <div class="enter">
+    <a class="enter-card card" href="./deck.html">
+      <div class="ec-top"><div class="ec-ic">📊</div><h3>발표자료 (10장)</h3></div>
+      <p>제안·가설 수정 이유·기존 자산·병목·솔루션·첫 검증 행동·시연·사업 숫자·검증 방식·Go/Pivot/Stop.</p>
+      <span class="go">발표자료 보기 →</span>
+    </a>
+    <a class="enter-card card" href="./prototype.html">
+      <div class="ec-top"><div class="ec-ic">📱</div><h3>모바일 프로토타입</h3></div>
+      <p>동의부터 답례·답례품·후속 도움·완료·사업 대시보드까지 실제로 눌러볼 수 있는 클릭 시연(가상).</p>
+      <span class="go">프로토타입 시연 →</span>
+    </a>
+  </div>
+</div></header>
+
+<main class="wrap">
+
+  <section class="blk">
+    <h2>사업 가설 한 문장</h2>
+    <div class="sub">내부 데이터·권한 확인 전 자산 가설</div>
+    <div class="card" style="border-left:3px solid var(--primary);">
+      <p style="font-size:var(--fs-h3); color:var(--text); margin:0;">“삼가의 모바일 부고와 장례식장 접점을 시작으로 기존 <b>답례·답례품·장지·상속상담·필수 사후절차</b>를 하나의 행동 흐름으로 연결해, 상주의 장례 마무리와 삼가의 거래 전환을 함께 개선하는 <b>‘상주 장례 마감 허브’</b>를 제안합니다.”</p>
+    </div>
+  </section>
+
+  <section class="blk">
+    <h2>시작점 — 삼가가 이미 가진 자산</h2>
+    <div class="sub">각 자산은 확인할 권한·데이터·현재 성과를 전제로 한다 (내부 확인 전)</div>
+    <div class="assets">
+      <div class="asset card"><div class="an">모바일 부고</div><div class="am">B2C 진입점 · 상주 접점</div></div>
+      <div class="asset card"><div class="an">장례식장 ERP·현장 네트워크</div><div class="am">B2B 운영 자산</div></div>
+      <div class="asset card"><div class="an">답례 메시지·답례품</div><div class="am">첫 검증 행동과 기존 거래</div></div>
+      <div class="asset card"><div class="an">근조화환·정산 운영</div><div class="am">커머스·정산 역량</div></div>
+      <div class="asset card"><div class="an">모핏·명당가 장지</div><div class="am">선택형 장지 후속 행동</div></div>
+      <div class="asset card"><div class="an">상속상담·유품정리·안내</div><div class="am">선택형 후속 도움 모듈</div></div>
+      <div class="asset card"><div class="an">고객센터·파트너 운영</div><div class="am">디지털 보조·예외처리</div></div>
+    </div>
+  </section>
+
+  <section class="blk">
+    <h2>솔루션 — 필요한 마무리 행동만 선택해 완료하는 한 흐름</h2>
+    <div class="sub">첫 검증 행동은 전체 플랫폼이 아니라 ‘답례’ 하나 (구매하지 않고 메시지만 보내도 완료)</div>
+    <div class="flow">
+      <span class="step first">장례 마무리 제안</span><span class="arw">→</span>
+      <span class="step">목적별 동의</span><span class="arw">→</span>
+      <span class="step">답례 메시지</span><span class="arw">→</span>
+      <span class="step">답례품 또는 건너뛰기</span><span class="arw">→</span>
+      <span class="step">필요한 후속 도움 선택</span><span class="arw">→</span>
+      <span class="step">완료 · 안내 중지</span>
+    </div>
+  </section>
+
+  <section class="blk">
+    <h2>기능이 아니라 사업 결과를 본다</h2>
+    <div class="sub">실제 숫자는 표시하지 않고 기준선 측정 전 · 정의와 방향만</div>
+    <div class="metrics">
+      <div class="metric card"><div class="ml">사용자 핵심지표</div><div class="md">동의한 상주가 선택한 장례 마무리 행동을 <b>실제 완료한 비율</b></div></div>
+      <div class="metric card"><div class="ml">사업 핵심지표</div><div class="md">동의 가능한 <b>부고 1건당 공헌이익</b> (매출 − 원가 − 결제·배송 − 상담·CS − 기타 변동비)</div></div>
+      <div class="metric card"><div class="ml">신뢰 가드레일</div><div class="md">최초 거절 · 동의 철회 · 불쾌감·개인정보 민원 · 환불·배송 실패</div></div>
+      <div class="metric card"><div class="ml">현장 운영</div><div class="md">장례식장 반복 문의 · 직원 개입시간 · 예외·에스컬레이션</div></div>
+    </div>
+  </section>
+
+  <section class="blk">
+    <h2>날짜가 아니라 조건으로 결정합니다</h2>
+    <div class="sub">가설을 지키는 것이 아니라 삼가의 기존 자산에서 사업 결과를 만든다</div>
+    <div class="gps">
+      <div class="g card"><h3><span class="badge ok">Go</span></h3><ul>
+        <li>상주가 도움으로 수용</li><li>완료·거래·공헌이익 개선</li><li>장례식장 운영 부담·민원 통제</li></ul></div>
+      <div class="p card"><h3><span class="badge">Pivot</span></h3><ul>
+        <li>사후 연결이 약하면</li><li>ERP·모바일 부고·화환·답례품의</li><li>운영·매출 병목으로 이동</li></ul></div>
+      <div class="s card"><h3><span class="badge warn">Stop</span></h3><ul>
+        <li>동의 기반 접점 없음</li><li>불쾌감·민원 증가</li><li>경제성 없음 · 법무 위험 통제 불가</li></ul></div>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap">
+  <p class="disclaimer">이 페이지와 프로토타입은 <b>가설 검증용 데모</b>입니다. 모든 인물·장소·상품·숫자는 가상이며, 실제 개인정보 수집·결제·문자 발송·본인인증은 이루어지지 않습니다. 표시된 지표는 <b>기준선 측정 전</b>이며 특정 날짜의 매출·성과를 약속하지 않습니다. 법률·세무는 정보·공식 출처·연결까지만 다루며 개인별 판단을 하지 않습니다.</p>
+  <p class="disclaimer" style="margin-top:10px;">삼가 서비스기획팀장 2차 면접용 · 상주 장례 마감 허브(내부 가칭) · 고객 화면 표시명 ‘장례 마무리’</p>
+</div></footer>
+</body>
+</html>
