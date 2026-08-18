@@ -168,17 +168,34 @@
     <div class="bigcta"><a class="btn" href="./prototype.html">프로토타입 보기 →</a></div>
   </section>
 
-  <!-- 8 · 사업 숫자 -->
+  <!-- 8 · 가설과 KPI -->
   <section class="slide">
-    <div class="kicker">08 / 10 · 사업 숫자</div>
-    <h1 class="title">기능 사용률이 아니라<br><span class="hi">완료·경제성·신뢰</span>를<br>함께 봅니다.</h1>
-    <div class="pts c2">
-      <div class="pt"><div class="ph">동의 후 마무리 완료율</div><div class="pm">사용자 핵심지표</div></div>
-      <div class="pt"><div class="ph">부고당 공헌이익</div><div class="pm">사업 핵심지표</div></div>
-      <div class="pt"><div class="ph">반복 문의·직원 개입시간</div><div class="pm">현장 운영</div></div>
-      <div class="pt"><div class="ph">민원·거절·철회</div><div class="pm">신뢰 가드레일</div></div>
+    <div class="kicker">08 / 11 · 가설과 KPI</div>
+    <h1 class="title">‘좋아진다’가 아니라,<br><span class="hi">숫자로 검증할</span> 가설 셋입니다.</h1>
+    <div class="pts c3">
+      <div class="pt"><div class="num">1</div><div class="ph">동의한 상주가 마무리를 완료하는가</div><div class="pm">KPI · 동의 후 완료율 <b>(선행지표)</b></div></div>
+      <div class="pt"><div class="num">2</div><div class="ph">그 흐름에서 기존 거래로 전환되는가</div><div class="pm">KPI · 답례품 전환율 · 객단가</div></div>
+      <div class="pt"><div class="num">3</div><div class="ph">부고 1건당 경제성이 개선되는가</div><div class="pm">KPI · 부고당 공헌이익 <b>(후행지표)</b></div></div>
     </div>
-    <div class="flags"><span class="badge">실제 숫자 없음 · 기준선 측정 전</span></div>
+    <p class="keyline">각 단계는 <span class="hi">숫자로 확인될 때만</span> 다음으로. 거절·철회·민원이 기준을 넘으면 멈춥니다.</p>
+  </section>
+
+  <!-- 9 · 매출 연결 -->
+  <section class="slide">
+    <div class="kicker">09 / 11 · 매출 연결</div>
+    <h1 class="title">무료로 시작한 행동이<br><span class="hi">어떻게 매출</span>이 되나.</h1>
+    <div class="flow tight">
+      <span class="step first">부고 트래픽</span><span class="arw">→</span>
+      <span class="step">동의·완료</span><span class="arw">→</span>
+      <span class="step">답례품 전환</span><span class="arw">→</span>
+      <span class="step">부고당 거래액</span><span class="arw">→</span>
+      <span class="step">부고당 공헌이익</span>
+    </div>
+    <div class="pts c2">
+      <div class="pt"><div class="ph">이미 가진 것</div><div class="pm">부고 트래픽·답례품 자산 — 새로 만드는 건 ‘연결’뿐</div></div>
+      <div class="pt"><div class="ph">그래서</div><div class="pm">증분 전환이 곧 증분 공헌이익 · 신규 획득비용 부담 낮음</div></div>
+    </div>
+    <p class="keyline">부고당 공헌이익 = 거래액 × 마진 − (결제·배송·CS·상담·지원) 변동비 · <span class="hi">실값은 30일 내 기준선부터</span></p>
   </section>
 
   <!-- 9 · 검증 방식 -->
@@ -213,6 +230,8 @@
 
 <script>
   const slides=[...document.querySelectorAll('.slide')];
+  // 슬라이드 번호 자동화: 각 kicker의 주제(· 뒤)는 유지하고 'NN / 총장수'만 자동 부여
+  slides.forEach((s,n)=>{ const k=s.querySelector('.kicker'); if(k){ const t=k.textContent.split('·').slice(1).join('·').trim(); k.textContent=String(n+1).padStart(2,'0')+' / '+slides.length+(t?' · '+t:''); } });
   const dotsWrap=document.getElementById('dots'), pgn=document.getElementById('pgn');
   const prev=document.getElementById('prev'), next=document.getElementById('next');
   let i=0;
