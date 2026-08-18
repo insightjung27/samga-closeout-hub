@@ -23,9 +23,9 @@
   @media(min-width:940px){ .phone{ min-height:812px; height:812px; border-radius:34px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow); } }
   /* 상단바 */
   .pbar{ flex:none; display:flex; align-items:center; justify-content:space-between; gap:8px; padding:14px 16px calc(10px + env(safe-area-inset-top,0)); border-bottom:1px solid var(--border-2); background:var(--surface-2); }
-  .pbar .back{ background:transparent; border:0; font-size:16px; font-weight:700; color:var(--text-2); cursor:pointer; padding:6px; min-width:44px; min-height:40px; text-align:left; }
-  .pbar .ttl{ font-weight:800; font-size:var(--fs-sm); }
-  .pbar .restart{ background:transparent; border:1px solid var(--border); border-radius:8px; font-size:var(--fs-cap); font-weight:700; color:var(--text-3); padding:6px 10px; cursor:pointer; min-height:36px; }
+  .pbar .back{ background:transparent; border:0; font-size:15px; font-weight:700; color:var(--text-2); cursor:pointer; padding:6px 2px; min-width:52px; min-height:40px; text-align:left; flex:none; white-space:nowrap; }
+  .pbar .ttl{ flex:1; text-align:center; font-weight:800; font-size:var(--fs-sm); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .pbar .restart{ flex:none; background:transparent; border:1px solid var(--border); border-radius:8px; font-size:var(--fs-cap); font-weight:700; color:var(--text-3); padding:6px 9px; cursor:pointer; min-height:36px; white-space:nowrap; }
   .demoflag{ flex:none; background:var(--stop-soft); color:var(--stop); font-size:var(--fs-cap); font-weight:700; text-align:center; padding:6px; }
   /* 본문 */
   .pbody{ flex:1 1 auto; overflow-y:auto; padding:20px 18px 18px; }
