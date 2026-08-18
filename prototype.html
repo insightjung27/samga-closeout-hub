@@ -9,111 +9,140 @@
 <link rel="stylesheet" href="./styles/base.css">
 <style>
   body{ background:#E9E6DF; }
-  /* 데스크톱: 중앙 모바일 프레임 + 설명 패널 / 모바일: 풀스크린 */
-  .lab{ display:grid; grid-template-columns:1fr; gap:0; min-height:100vh; }
+  .lab{ display:grid; grid-template-columns:1fr; min-height:100vh; }
   .side{ display:none; }
-  @media(min-width:940px){
-    .lab{ grid-template-columns:minmax(0,1fr) 420px; max-width:1160px; margin:0 auto; gap:28px; padding:26px 22px; align-items:start; }
-    .side{ display:block; position:sticky; top:26px; }
+  @media(min-width:960px){
+    .lab{ grid-template-columns:minmax(0,1fr) 400px; max-width:1180px; margin:0 auto; gap:30px; padding:28px 22px; align-items:start; }
+    .side{ display:block; position:sticky; top:28px; }
   }
-  .phonewrap{ display:grid; place-items:center; padding:0; }
-  @media(min-width:940px){ .phonewrap{ padding:26px 0; } }
-  .phone{ width:100%; max-width:430px; background:var(--surface); min-height:100vh; display:flex; flex-direction:column;
-    box-shadow:none; }
-  @media(min-width:940px){ .phone{ min-height:812px; height:812px; border-radius:34px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow); } }
+  .phonewrap{ display:grid; place-items:center; }
+  @media(min-width:960px){ .phonewrap{ padding:26px 0; } }
+  .phone{ width:100%; max-width:420px; background:var(--surface); min-height:100vh; display:flex; flex-direction:column; }
+  @media(min-width:960px){ .phone{ min-height:824px; height:824px; border-radius:36px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow); } }
   /* 상단바 */
-  .pbar{ flex:none; display:flex; align-items:center; justify-content:space-between; gap:8px; padding:14px 16px calc(10px + env(safe-area-inset-top,0)); border-bottom:1px solid var(--border-2); background:var(--surface-2); }
-  .pbar .back{ background:transparent; border:0; font-size:15px; font-weight:700; color:var(--text-2); cursor:pointer; padding:6px 2px; min-width:52px; min-height:40px; text-align:left; flex:none; white-space:nowrap; }
-  .pbar .ttl{ flex:1; text-align:center; font-weight:800; font-size:var(--fs-sm); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .pbar .restart{ flex:none; background:transparent; border:1px solid var(--border); border-radius:8px; font-size:var(--fs-cap); font-weight:700; color:var(--text-3); padding:6px 9px; cursor:pointer; min-height:36px; white-space:nowrap; }
-  .demoflag{ flex:none; background:var(--stop-soft); color:var(--stop); font-size:var(--fs-cap); font-weight:700; text-align:center; padding:6px; }
-  /* 본문 */
-  .pbody{ flex:1 1 auto; overflow-y:auto; padding:20px 18px 18px; }
-  .pbody h1{ font-size:22px; line-height:1.34; margin-bottom:8px; }
-  .pbody .desc{ color:var(--text-2); font-size:var(--fs-sm); margin-bottom:18px; }
-  .pbody .sec{ font-size:var(--fs-cap); font-weight:800; color:var(--text-3); letter-spacing:.02em; margin:20px 0 10px; }
-  /* 하단 고정 CTA */
-  .pcta{ flex:none; padding:12px 16px calc(14px + env(safe-area-inset-bottom,0)); border-top:1px solid var(--border-2); background:var(--surface); display:grid; gap:8px; }
-  .pcta .btn{ width:100%; }
-  .pcta .sub{ background:transparent; color:var(--text-3); border:0; min-height:40px; }
-  /* 요소 */
-  .opt{ display:flex; align-items:flex-start; gap:12px; padding:14px; border:1px solid var(--border); border-radius:12px; margin-bottom:10px; cursor:pointer; background:var(--surface); }
-  .opt.sel{ border-color:var(--primary); background:var(--accent-soft); }
-  .opt .chk{ flex:none; width:24px; height:24px; border-radius:7px; border:2px solid var(--border); display:grid; place-items:center; margin-top:1px; font-size:14px; color:#fff; }
+  .pbar{ flex:none; display:flex; align-items:center; gap:8px; padding:14px 16px 12px; padding-top:calc(14px + env(safe-area-inset-top,0)); border-bottom:1px solid var(--border-2); background:var(--surface); }
+  .pbar .back{ flex:none; background:transparent; border:0; font-size:15px; font-weight:700; color:var(--text-2); cursor:pointer; padding:6px 2px; min-width:50px; min-height:40px; text-align:left; white-space:nowrap; }
+  .pbar .ttl{ flex:1; text-align:center; font-weight:800; font-size:16px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .pbar .restart{ flex:none; background:transparent; border:1px solid var(--border); border-radius:9px; font-size:13px; font-weight:700; color:var(--text-3); padding:7px 11px; cursor:pointer; min-height:38px; white-space:nowrap; }
+  /* 진행 인디케이터 */
+  .steps{ flex:none; display:flex; gap:6px; padding:12px 16px; background:var(--surface-2); border-bottom:1px solid var(--border-2); }
+  .steps .sd{ flex:1; height:5px; border-radius:3px; background:var(--border); transition:background .3s; }
+  .steps .sd.done{ background:var(--secondary); } .steps .sd.cur{ background:var(--primary); }
+  .steplabel{ flex:none; text-align:center; font-size:12px; font-weight:800; color:var(--text-3); padding:0 16px 10px; background:var(--surface-2); border-bottom:1px solid var(--border-2); }
+  .demoflag{ flex:none; background:var(--stop-soft); color:var(--stop); font-size:12.5px; font-weight:700; text-align:center; padding:7px; }
+  /* 본문 (전환 애니메이션) */
+  .pbody{ flex:1 1 auto; overflow-y:auto; padding:22px 18px 18px; }
+  .pbody.anim{ animation:slidein .28s ease; }
+  @keyframes slidein{ from{ opacity:0; transform:translateX(12px);} to{ opacity:1; transform:none;} }
+  .pbody h1{ font-size:23px; line-height:1.34; margin-bottom:8px; letter-spacing:-.02em; }
+  .pbody .desc{ color:var(--text-2); font-size:15.5px; margin-bottom:18px; line-height:1.62; }
+  .pbody .sec{ display:flex; align-items:center; gap:8px; font-size:13px; font-weight:800; color:var(--text-3); letter-spacing:.02em; margin:22px 0 11px; }
+  .pbody .sec::after{ content:""; flex:1; height:1px; background:var(--border-2); }
+  /* 동의 옵션 */
+  .opt{ display:flex; align-items:flex-start; gap:12px; padding:15px; border:1.5px solid var(--border); border-radius:13px; margin-bottom:11px; cursor:pointer; background:var(--surface); transition:border-color .15s, background .15s; }
+  .opt:hover{ border-color:var(--secondary); } .opt.sel{ border-color:var(--primary); background:var(--accent-soft); }
+  .opt .chk{ flex:none; width:26px; height:26px; border-radius:8px; border:2px solid var(--border); display:grid; place-items:center; margin-top:1px; font-size:15px; color:#fff; transition:.15s; }
   .opt.sel .chk{ background:var(--primary); border-color:var(--primary); }
-  .opt .on{ font-weight:700; margin-bottom:2px; } .opt .om{ font-size:var(--fs-cap); color:var(--text-3); }
-  .task{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:15px; border:1px solid var(--border); border-radius:12px; margin-bottom:10px; background:var(--surface); }
-  .task.done{ background:#E9F0EC; border-color:#CFE0D7; }
-  .task .tn{ font-weight:700; } .task .tt{ font-size:var(--fs-cap); color:var(--text-3); }
-  .task .go{ flex:none; background:var(--primary); color:#fff; border:0; border-radius:9px; padding:9px 14px; font-weight:700; cursor:pointer; min-height:40px; }
-  .task.done .go{ background:transparent; color:var(--success); font-weight:800; }
-  .tone{ display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap; }
-  .tone button{ border:1px solid var(--border); background:var(--surface); border-radius:999px; padding:9px 15px; font-weight:700; font-size:var(--fs-sm); cursor:pointer; min-height:42px; }
+  .opt .on{ font-weight:700; margin-bottom:3px; font-size:16px; } .opt .om{ font-size:13px; color:var(--text-3); line-height:1.5; }
+  /* 홈 태스크 */
+  .task{ display:flex; align-items:center; gap:12px; padding:16px; border:1.5px solid var(--border); border-radius:13px; margin-bottom:11px; background:var(--surface); }
+  .task.pri{ border-color:var(--primary); box-shadow:0 2px 10px rgba(46,58,78,.08); }
+  .task.done{ background:#EAF1EC; border-color:#CFE0D7; }
+  .task .ti{ flex:none; width:40px; height:40px; border-radius:11px; background:var(--accent-soft); display:grid; place-items:center; font-size:19px; }
+  .task.done .ti{ background:#D8E6DE; }
+  .task .tx{ flex:1; } .task .tn{ font-weight:700; font-size:16px; } .task .tt{ font-size:13px; color:var(--text-3); margin-top:2px; }
+  .task .go{ flex:none; background:var(--primary); color:#fff; border:0; border-radius:10px; padding:11px 16px; font-weight:700; font-size:14px; cursor:pointer; min-height:42px; }
+  .task.done .go{ background:transparent; color:var(--success); font-weight:800; font-size:20px; padding:8px; }
+  .empty-hint{ font-size:13px; color:var(--text-3); padding:2px 2px 6px; }
+  /* 답례 메시지 */
+  .tone{ display:flex; gap:9px; margin-bottom:16px; flex-wrap:wrap; }
+  .tone button{ border:1.5px solid var(--border); background:var(--surface); border-radius:999px; padding:10px 17px; font-weight:700; font-size:15px; cursor:pointer; min-height:44px; transition:.15s; }
   .tone button.on{ background:var(--primary); color:#fff; border-color:var(--primary); }
-  .preview{ background:var(--surface-2); border:1px solid var(--border); border-radius:12px; padding:15px; font-size:var(--fs-sm); color:var(--text); line-height:1.7; white-space:pre-wrap; min-height:96px; }
-  .gift{ display:flex; gap:12px; padding:12px; border:1px solid var(--border); border-radius:12px; margin-bottom:10px; align-items:center; }
-  .gift .gimg{ flex:none; width:52px; height:52px; border-radius:10px; background:var(--accent-soft); display:grid; place-items:center; font-size:22px; }
-  .gift .gn{ font-weight:700; } .gift .gp{ font-size:var(--fs-cap); color:var(--text-3); }
-  .gift .pick{ flex:none; border:1px solid var(--border); background:var(--surface); border-radius:9px; padding:9px 13px; font-weight:700; cursor:pointer; min-height:40px; }
-  .gift.sel{ border-color:var(--primary); } .gift.sel .pick{ background:var(--primary); color:#fff; border-color:var(--primary); }
-  .stage3{ display:grid; gap:10px; }
-  .stage3 .row3{ border:1px solid var(--border); border-radius:12px; padding:14px; }
-  .stage3 .lab3{ font-size:var(--fs-cap); font-weight:800; color:var(--secondary); margin-bottom:5px; }
-  .note{ background:var(--surface-2); border:1px dashed var(--border); border-radius:10px; padding:12px 14px; font-size:var(--fs-cap); color:var(--text-3); }
-  .bignum{ text-align:center; padding:18px 0; }
-  .bignum .em{ font-size:44px; }
-  .done-list{ margin:10px 0; padding-left:18px; color:var(--text-2); font-size:var(--fs-sm); } .done-list li{ margin-bottom:5px; }
+  .recip{ display:flex; align-items:center; gap:9px; background:var(--accent-soft); border-radius:11px; padding:11px 14px; margin-bottom:14px; font-size:14px; }
+  .recip .ri{ font-size:17px; } .recip b{ color:var(--text); }
+  .preview{ background:var(--surface-2); border:1.5px solid var(--border); border-radius:13px; padding:17px; font-size:16px; color:var(--text); line-height:1.75; white-space:pre-wrap; min-height:100px; }
+  .preview:focus{ border-color:var(--primary); outline:none; }
+  .editnote{ font-size:12px; color:var(--text-3); margin-top:8px; text-align:right; }
+  /* 답례품 */
+  .gift{ display:flex; gap:13px; padding:14px; border:1.5px solid var(--border); border-radius:13px; margin-bottom:11px; align-items:center; background:var(--surface); transition:.15s; }
+  .gift.sel{ border-color:var(--primary); background:var(--accent-soft); }
+  .gift .gimg{ flex:none; width:56px; height:56px; border-radius:12px; background:var(--accent-soft); display:grid; place-items:center; font-size:26px; }
+  .gift.sel .gimg{ background:#fff; }
+  .gift .gx{ flex:1; } .gift .gn{ font-weight:700; font-size:16px; } .gift .gp{ font-size:13px; color:var(--text-3); margin-top:2px; }
+  .gift .pick{ flex:none; border:1.5px solid var(--border); background:var(--surface); border-radius:10px; padding:10px 15px; font-weight:700; font-size:14px; cursor:pointer; min-height:42px; }
+  .gift.sel .pick{ background:var(--primary); color:#fff; border-color:var(--primary); }
+  .qty{ display:flex; align-items:center; gap:14px; margin-top:14px; padding:13px 16px; border:1px solid var(--border); border-radius:12px; }
+  .qty .ql{ flex:1; font-weight:700; font-size:15px; } .qty button{ width:40px; height:40px; border-radius:10px; border:1px solid var(--border); background:var(--surface); font-size:20px; font-weight:700; cursor:pointer; color:var(--primary); }
+  .qty .qn{ min-width:28px; text-align:center; font-weight:800; font-size:17px; }
+  /* 3단 (지금·다음·나중 / 발송 확인) */
+  .stage3{ display:grid; gap:11px; }
+  .row3{ border:1.5px solid var(--border); border-radius:13px; padding:15px; background:var(--surface); }
+  .row3 .lab3{ font-size:12px; font-weight:800; color:var(--secondary); margin-bottom:5px; letter-spacing:.02em; }
+  .row3 .val3{ font-size:15px; color:var(--text); line-height:1.55; }
+  .note{ background:var(--surface-2); border:1px dashed var(--border); border-radius:11px; padding:13px 15px; font-size:13px; color:var(--text-3); line-height:1.6; }
+  /* 완료 */
+  .celebrate{ text-align:center; padding:26px 0 10px; }
+  .celebrate .ring{ width:88px; height:88px; border-radius:50%; margin:0 auto 4px; background:#E6EEEA; display:grid; place-items:center; font-size:44px; color:var(--success); animation:pop .45s cubic-bezier(.2,1.4,.4,1); }
+  @keyframes pop{ 0%{ transform:scale(.3); opacity:0;} 100%{ transform:scale(1); opacity:1;} }
+  .done-list{ margin:16px 0; display:grid; gap:9px; }
+  .done-list .dl{ display:flex; align-items:center; gap:10px; background:var(--surface-2); border:1px solid var(--border); border-radius:11px; padding:12px 14px; font-size:15px; }
+  .done-list .dl .di{ color:var(--success); font-weight:800; }
+  /* 하단 CTA */
+  .pcta{ flex:none; padding:13px 16px; padding-bottom:calc(14px + env(safe-area-inset-bottom,0)); border-top:1px solid var(--border-2); background:var(--surface); display:grid; gap:9px; }
+  .pcta .btn{ width:100%; min-height:52px; font-size:16px; }
+  .pcta .btn:disabled{ opacity:.45; cursor:default; }
+  .pcta .sub{ background:transparent; color:var(--text-3); border:0; min-height:42px; font-size:15px; font-weight:700; cursor:pointer; }
+  /* 토스트 */
+  .toast{ position:absolute; left:50%; bottom:96px; transform:translateX(-50%) translateY(10px); background:var(--text); color:#fff; font-size:14px; font-weight:600; padding:11px 18px; border-radius:999px; opacity:0; pointer-events:none; transition:.25s; z-index:5; }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
   /* 대시보드 */
-  .dash .funnel{ display:grid; gap:6px; }
-  .dash .fr{ display:flex; align-items:center; justify-content:space-between; gap:10px; background:var(--surface-2); border:1px solid var(--border); border-radius:10px; padding:11px 13px; }
-  .dash .fr .fl{ font-weight:700; font-size:var(--fs-sm); } .dash .fr .fv{ font-weight:800; color:var(--primary); font-size:var(--fs-sm); }
-  .dash .kv{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
-  .dash .k{ border:1px solid var(--border); border-radius:10px; padding:11px 13px; } .dash .k .kl{ font-size:var(--fs-cap); color:var(--text-3); } .dash .k .kn{ font-weight:800; }
-  .vbadge{ display:inline-block; font-size:11px; font-weight:800; color:var(--badge-ink); background:var(--badge-bg); border-radius:6px; padding:2px 7px; margin-left:6px; vertical-align:middle; }
-  /* 설명 패널(데스크톱) */
-  .side .card{ margin-bottom:14px; }
-  .side h3{ margin-bottom:8px; }
-  .side .kvp{ font-size:var(--fs-sm); color:var(--text-2); } .side .kvp b{ color:var(--text); }
-  .side .events{ max-height:220px; overflow:auto; font-size:var(--fs-cap); color:var(--text-3); }
-  .side .events div{ padding:4px 0; border-bottom:1px dashed var(--border-2); }
+  .dash h1{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .funnel{ display:grid; gap:8px; }
+  .fr{ background:var(--surface); border:1px solid var(--border); border-radius:11px; padding:12px 14px; }
+  .fr .frt{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:7px; } .fr .fl{ font-weight:700; font-size:14.5px; } .fr .fv{ font-weight:800; color:var(--primary); }
+  .fr .bar{ height:8px; border-radius:5px; background:var(--accent-soft); overflow:hidden; } .fr .bar i{ display:block; height:100%; background:var(--primary); border-radius:5px; transition:width .5s; }
+  .kv{ display:grid; grid-template-columns:1fr 1fr; gap:9px; }
+  .k{ border:1px solid var(--border); border-radius:11px; padding:12px 14px; background:var(--surface); } .k .kl{ font-size:12.5px; color:var(--text-3); } .k .kn{ font-weight:800; font-size:16px; margin-top:3px; }
+  .vbadge{ display:inline-block; font-size:11px; font-weight:800; color:var(--badge-ink); background:var(--badge-bg); border-radius:6px; padding:3px 8px; vertical-align:middle; }
+  /* 설명 패널 */
+  .side .card{ margin-bottom:14px; } .side h3{ margin-bottom:9px; font-size:16px; }
+  .side .kvp{ font-size:14px; color:var(--text-2); line-height:1.7; } .side .kvp b{ color:var(--text); }
+  .side .events{ max-height:230px; overflow:auto; font-size:12.5px; color:var(--text-3); }
+  .side .events div{ padding:5px 0; border-bottom:1px dashed var(--border-2); }
 </style>
 </head>
 <body>
 <div class="lab">
-  <!-- 모바일 프레임 -->
   <div class="phonewrap"><div class="phone">
     <div class="pbar">
       <button class="back" id="back" aria-label="뒤로">‹ 뒤로</button>
       <div class="ttl" id="ptitle">장례 마무리</div>
       <button class="restart" id="restart">처음부터</button>
     </div>
+    <div class="steps" id="steps" aria-hidden="true"></div>
+    <div class="steplabel" id="steplabel"></div>
     <div class="demoflag">가상 데모 · 실제 발송·결제·개인정보 없음</div>
     <div class="pbody" id="pbody"></div>
+    <div class="toast" id="toast"></div>
     <div class="pcta" id="pcta"></div>
   </div></div>
-  <!-- 설명 패널(데스크톱) -->
   <aside class="side">
-    <div class="card">
-      <h3>지금 화면</h3>
-      <div class="kvp" id="sideMeta"></div>
-    </div>
-    <div class="card">
-      <h3>이벤트 로그 <span class="vbadge">개발용</span></h3>
-      <div class="events" id="sideEvents"></div>
-    </div>
-    <div class="card">
-      <h3>이동</h3>
-      <div class="kvp"><a href="./index.html">← 요약</a> · <a href="./deck.html">발표자료</a></div>
-    </div>
+    <div class="card"><h3>지금 화면</h3><div class="kvp" id="sideMeta"></div></div>
+    <div class="card"><h3>이벤트 로그 <span class="vbadge">개발용</span></h3><div class="events" id="sideEvents"></div></div>
+    <div class="card"><h3>이동</h3><div class="kvp"><a href="./index.html">← 요약</a> · <a href="./deck.html">발표자료</a></div></div>
   </aside>
 </div>
 
 <script>
-// ===== 상태 =====
 const initState=()=>({ screen:'offer',
   consent:{ thanksMessage:false, thanksGift:false, cemetery:false, administration:false, expertContact:false },
-  tone:'정중함', gift:null, aftercarePicked:null, completed:[], optedOut:false, events:[] });
+  tone:'정중함', gift:null, qty:1, aftercarePicked:null, completed:[], optedOut:false, events:[] });
 let S=initState(); let history=['offer'];
+// 메인 진행 단계(인디케이터용)
+const FLOW=['offer','consent','home','message_edit','complete','dashboard'];
+const STEPLABEL={ offer:'제안', consent:'목적별 동의', home:'마무리 홈', message_edit:'답례 메시지', message_review:'발송 확인',
+  gift_choice:'답례품', aftercare_choice:'후속 도움', aftercare_detail:'후속 도움', complete:'완료', dashboard:'사업 대시보드', optout:'안내 중지' };
+const stepIndex=s=>{ const m={offer:0,consent:1,home:2,message_edit:3,message_review:3,gift_choice:3,aftercare_choice:3,aftercare_detail:3,complete:4,dashboard:5,optout:2}; return m[s]??0; };
 const CONSENT=[
   ['thanksMessage','답례 도움','답례 메시지 작성을 도와드립니다 · 대상: 조문 그룹(가상)'],
   ['thanksGift','답례품','답례품을 살펴볼 수 있습니다 · 대상: 상주 본인'],
@@ -121,20 +150,17 @@ const CONSENT=[
   ['administration','필수 사후절차','공식 사후절차 안내를 확인합니다 · 대상: 상주 본인'],
   ['expertContact','상담 연결','전문가 상담 연결(가상) · 대상: 선택 시 파트너'],
 ];
-const TONES={ '정중함':'삼가 감사의 말씀을 전합니다. 바쁘신 중에도 함께해 주셔서 진심으로 감사드립니다.',
-  '간결함':'함께해 주셔서 감사합니다. 덕분에 잘 마무리했습니다.',
-  '따뜻함':'따뜻한 위로와 함께해 주셔서 큰 힘이 되었습니다. 오래 기억하겠습니다.' };
+const TONES={ '정중함':'삼가 감사의 말씀을 전합니다.\n바쁘신 중에도 함께해 주셔서 진심으로 감사드립니다.',
+  '간결함':'함께해 주셔서 감사합니다.\n덕분에 잘 마무리했습니다.',
+  '따뜻함':'따뜻한 위로와 함께해 주셔서 큰 힘이 되었습니다.\n오래 기억하겠습니다.' };
 const GIFTS=[['🍵','전통차 세트','2~3만원대 · 가상'],['🧺','생활 답례품','1~2만원대 · 가상'],['🎁','상품권','금액 선택 · 가상']];
 
-// ===== 이벤트 =====
 function ev(name){ S.events.push({t:new Date().toLocaleTimeString('ko-KR',{hour12:false}),name}); renderSide(); }
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),1600); }
+function goto(screen,record=true){ if(record){ history.push(screen); } S.screen=screen; render(true); }
+document.getElementById('back').onclick=()=>{ if(history.length>1){ history.pop(); S.screen=history[history.length-1]; render(true); } };
+document.getElementById('restart').onclick=()=>{ S=initState(); history=['offer']; ev('restart'); render(true); };
 
-// ===== 내비게이션 =====
-function goto(screen,record=true){ if(record){ history.push(screen); } S.screen=screen; render(); }
-document.getElementById('back').onclick=()=>{ if(history.length>1){ history.pop(); S.screen=history[history.length-1]; render(); } };
-document.getElementById('restart').onclick=()=>{ S=initState(); history=['offer']; ev('restart'); render(); };
-
-// ===== 화면 정의: {title, body(), cta()} =====
 const SC={
  offer:{ title:'장례 마무리', enter:()=>ev('closeout_offer_view'), body:()=>`
    <h1>장례 후 마무리할 일을<br>함께 정리해 드릴게요.</h1>
@@ -145,8 +171,8 @@ const SC={
 
  consent:{ title:'목적별 동의', body:()=>`
    <h1>어떤 도움을 받으시겠어요?</h1>
-   <p class="desc">필요한 항목만 선택하세요. 각 항목의 목적과 전달 대상을 함께 안내합니다. 언제든 철회할 수 있습니다.</p>
-   ${CONSENT.map(([k,n,m])=>`<div class="opt ${S.consent[k]?'sel':''}" onclick="toggleConsent('${k}')" role="checkbox" aria-checked="${S.consent[k]}" tabindex="0">
+   <p class="desc">필요한 항목만 선택하세요. 각 항목의 목적과 전달 대상을 함께 안내하며, 언제든 철회할 수 있습니다.</p>
+   ${CONSENT.map(([k,n,m])=>`<div class="opt ${S.consent[k]?'sel':''}" onclick="toggleConsent('${k}')" role="checkbox" aria-checked="${S.consent[k]}" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleConsent('${k}')}">
       <div class="chk">${S.consent[k]?'✓':''}</div><div><div class="on">${n}</div><div class="om">${m}</div></div></div>`).join('')}`,
    cta:()=>`<button class="btn" onclick="submitConsent()">선택한 도움만 받기</button>
      <button class="sub" onclick="declineAll()">모두 받지 않기</button>` },
@@ -154,79 +180,86 @@ const SC={
  home:{ title:'장례 마무리', body:()=>{
    const done=t=>S.completed.includes(t);
    const showGift=S.consent.thanksGift, showCem=S.consent.cemetery, showAdmin=S.consent.administration||S.consent.expertContact;
-   return `<h1>지금 마무리할 일</h1>
-   <div class="task ${done('message')?'done':''}"><div><div class="tn">답례 메시지 보내기</div><div class="tt">${done('message')?'완료됨 · 가상 발송':'조문에 함께해 주신 분들께'}</div></div>
-     <button class="go" onclick="goto('message_edit')">${done('message')?'다시 보기':'시작'}</button></div>
-   ${showGift?`<div class="task ${done('gift')?'done':''}"><div><div class="tn">답례품 살펴보기</div><div class="tt">${done('gift')?(S.gift?'가상 주문 완료':'건너뜀'):'선택 사항 · 구매 의무 아님'}</div></div>
-     <button class="go" onclick="goto('gift_choice')">${done('gift')?'보기':'선택'}</button></div>`:''}
-   ${showCem||showAdmin?`<div class="sec">필요할 때 확인</div>`:''}
-   ${showCem?`<div class="task"><div><div class="tn">장지 알아보기</div><div class="tt">모핏·명당가 (선택)</div></div><button class="go" onclick="goto('aftercare_choice')">보기</button></div>`:''}
-   ${showAdmin?`<div class="task"><div><div class="tn">필수 사후절차·상담</div><div class="tt">공식 출처 안내 (선택)</div></div><button class="go" onclick="goto('aftercare_choice')">보기</button></div>`:''}
-   ${S.completed.length?`<div class="sec">완료한 일</div>${S.completed.map(t=>`<div class="task done"><div class="tn">${t==='message'?'답례 메시지':t==='gift'?'답례품':'후속 도움'}</div><div class="go">✓</div></div>`).join('')}`:''}`;
+   const pending=[]; const later=[];
+   pending.push(`<div class="task ${done('message')?'done':'pri'}"><div class="ti">✉️</div><div class="tx"><div class="tn">답례 메시지 보내기</div><div class="tt">${done('message')?'완료됨 · 가상 발송':'조문에 함께해 주신 분들께'}</div></div>
+     <button class="go" onclick="goto('message_edit')">${done('message')?'✓':'시작'}</button></div>`);
+   if(showGift) pending.push(`<div class="task ${done('gift')?'done':''}"><div class="ti">🎁</div><div class="tx"><div class="tn">답례품 살펴보기</div><div class="tt">${done('gift')?(S.gift!==null?'가상 주문 완료':'건너뜀'):'선택 사항 · 구매 의무 아님'}</div></div>
+     <button class="go" onclick="goto('gift_choice')">${done('gift')?'✓':'선택'}</button></div>`);
+   if(showCem) later.push(`<div class="task"><div class="ti">⛰️</div><div class="tx"><div class="tn">장지 알아보기</div><div class="tt">모핏·명당가 (선택)</div></div><button class="go" onclick="goto('aftercare_choice')">보기</button></div>`);
+   if(showAdmin) later.push(`<div class="task"><div class="ti">📋</div><div class="tx"><div class="tn">필수 사후절차·상담</div><div class="tt">공식 출처 안내 (선택)</div></div><button class="go" onclick="goto('aftercare_choice')">보기</button></div>`);
+   const doneCards=S.completed.map(t=>`<div class="task done"><div class="ti">✓</div><div class="tx"><div class="tn">${t==='message'?'답례 메시지':t==='gift'?'답례품':'후속 도움'}</div></div></div>`);
+   return `<h1>지금 마무리할 일</h1><p class="desc">필요한 것부터 하나씩. 다 하지 않으셔도 됩니다.</p>${pending.join('')}
+     ${later.length?`<div class="sec">필요할 때 확인</div>${later.join('')}`:''}
+     ${doneCards.length?`<div class="sec">완료한 일</div>${doneCards.join('')}`:''}`;
    },
    cta:()=>`<button class="btn" onclick="goto('complete')">장례 마무리 종료</button>
      <button class="sub" onclick="goto('optout')">모든 후속 안내 중지</button>` },
 
  message_edit:{ title:'답례 메시지', enter:()=>ev('thank_message_start'), body:()=>`
    <h1>답례 메시지</h1>
-   <p class="desc">톤을 고르고 문구를 다듬어 보세요. 수신 대상은 가상 그룹입니다.</p>
+   <p class="desc">톤을 고르고 문구를 다듬어 보세요.</p>
+   <div class="recip"><span class="ri">👥</span><span>수신 대상: <b>조문 방명록 그룹</b> · 예상 42명 (가상)</span></div>
    <div class="tone">${Object.keys(TONES).map(t=>`<button class="${S.tone===t?'on':''}" onclick="setTone('${t}')">${t}</button>`).join('')}</div>
-   <div class="sec">미리보기 (직접 수정 가능)</div>
-   <div class="preview" contenteditable="true" id="msgPrev" role="textbox" aria-label="답례 메시지 미리보기">${TONES[S.tone]}</div>`,
+   <div class="sec">미리보기 · 직접 수정 가능</div>
+   <div class="preview" contenteditable="true" id="msgPrev" role="textbox" aria-label="답례 메시지 미리보기">${TONES[S.tone]}</div>
+   <div class="editnote">✏️ 위 문구를 눌러 직접 고칠 수 있어요</div>`,
    cta:()=>`<button class="btn" onclick="goto('message_review')">발송 미리보기</button>
      <button class="sub" onclick="goto('home')">저장하고 나중에</button>` },
 
  message_review:{ title:'발송 확인', body:()=>`
    <h1>발송 확인</h1>
-   <div class="stage3"><div class="row3"><div class="lab3">수신 그룹 (가상)</div>조문 방명록 그룹 · 예상 42명</div>
-     <div class="row3"><div class="lab3">문구</div>${(document.getElementById('msgPrev')?.innerText)||TONES[S.tone]}</div></div>
+   <div class="stage3">
+     <div class="row3"><div class="lab3">수신 그룹 (가상)</div><div class="val3">조문 방명록 그룹 · 예상 42명</div></div>
+     <div class="row3"><div class="lab3">문구</div><div class="val3">${((document.getElementById('msgPrev')?.innerText)||TONES[S.tone]).replace(/\n/g,'<br>')}</div></div>
+   </div>
    <div class="note" style="margin-top:12px;">실제 발송이 아닙니다. 가상 발송으로 흐름만 확인합니다.</div>`,
    cta:()=>`<button class="btn" onclick="completeMessage()">가상 발송 완료</button>
      <button class="sub" onclick="goto('message_edit')">문구 수정</button>` },
 
  gift_choice:{ title:'답례품', enter:()=>ev('gift_view'), body:()=>`
-   <h1>답례품 (선택)</h1>
+   <h1>답례품 <span class="vbadge">선택</span></h1>
    <p class="desc">구매하지 않으셔도 됩니다. 답례 메시지만으로도 마무리는 완료됩니다.</p>
-   ${GIFTS.map((g,idx)=>`<div class="gift ${S.gift===idx?'sel':''}"><div class="gimg">${g[0]}</div><div style="flex:1"><div class="gn">${g[1]}</div><div class="gp">${g[2]}</div></div>
-     <button class="pick" onclick="pickGift(${idx})">${S.gift===idx?'선택됨':'선택'}</button></div>`).join('')}`,
-   cta:()=>`<button class="btn" onclick="orderGift()" ${S.gift===null?'disabled style=opacity:.5':''}>가상 주문 완료</button>
+   ${GIFTS.map((g,idx)=>`<div class="gift ${S.gift===idx?'sel':''}"><div class="gimg">${g[0]}</div><div class="gx"><div class="gn">${g[1]}</div><div class="gp">${g[2]}</div></div>
+     <button class="pick" onclick="pickGift(${idx})">${S.gift===idx?'선택됨':'선택'}</button></div>`).join('')}
+   ${S.gift!==null?`<div class="qty"><span class="ql">수량 (가상)</span><button onclick="setQty(-1)" aria-label="수량 줄이기">−</button><span class="qn">${S.qty}</span><button onclick="setQty(1)" aria-label="수량 늘리기">+</button></div>`:''}`,
+   cta:()=>`<button class="btn" onclick="orderGift()" ${S.gift===null?'disabled':''}>가상 주문 완료</button>
      <button class="sub" onclick="skipGift()">답례 메시지만 보내기 (건너뛰기)</button>` },
 
  aftercare_choice:{ title:'후속 도움', enter:()=>ev('aftercare_open'), body:()=>`
    <h1>필요한 후속 도움</h1>
    <p class="desc">선택하지 않으면 더 이상 노출을 확대하지 않습니다.</p>
-   ${S.consent.cemetery?`<div class="opt" onclick="pickAfter('cemetery')"><div class="chk">›</div><div><div class="on">장지 알아보기 <span class="vbadge">삼가 기존</span></div><div class="om">모핏·명당가 장지 정보</div></div></div>`:''}
-   ${S.consent.administration?`<div class="opt" onclick="pickAfter('admin')"><div class="chk">›</div><div><div class="on">공식 사후절차 확인 <span class="vbadge">정보 안내</span></div><div class="om">공식 출처 확인 필요</div></div></div>`:''}
-   ${S.consent.expertContact?`<div class="opt" onclick="pickAfter('expert')"><div class="chk">›</div><div><div class="on">전문가 상담 <span class="vbadge">파트너</span></div><div class="om">가상 연결 · 비용·SLA는 실제 계약 아님</div></div></div>`:''}
+   ${S.consent.cemetery?`<div class="opt" onclick="pickAfter('cemetery')" tabindex="0"><div class="chk" style="background:var(--accent-soft);color:var(--primary);border:none;">›</div><div><div class="on">장지 알아보기 <span class="vbadge">삼가 기존</span></div><div class="om">모핏·명당가 장지 정보</div></div></div>`:''}
+   ${S.consent.administration?`<div class="opt" onclick="pickAfter('admin')" tabindex="0"><div class="chk" style="background:var(--accent-soft);color:var(--primary);border:none;">›</div><div><div class="on">공식 사후절차 확인 <span class="vbadge">정보 안내</span></div><div class="om">공식 출처 확인 필요</div></div></div>`:''}
+   ${S.consent.expertContact?`<div class="opt" onclick="pickAfter('expert')" tabindex="0"><div class="chk" style="background:var(--accent-soft);color:var(--primary);border:none;">›</div><div><div class="on">전문가 상담 <span class="vbadge">파트너</span></div><div class="om">가상 연결 · 비용·SLA는 실제 계약 아님</div></div></div>`:''}
    ${(!S.consent.cemetery&&!S.consent.administration&&!S.consent.expertContact)?`<div class="note">동의한 후속 도움 항목이 없습니다. 홈에서 마무리를 완료할 수 있습니다.</div>`:''}`,
    cta:()=>`<button class="btn ghost" onclick="goto('home')">홈으로</button>` },
 
- aftercare_detail:{ title:'사후절차', body:()=>`
+ aftercare_detail:{ title:'후속 도움', body:()=>`
    <h1>${S.aftercarePicked==='cemetery'?'장지 정보':S.aftercarePicked==='expert'?'전문가 상담':'공식 사후절차'}</h1>
    <p class="desc">선택하신 절차 한 가지부터 안내합니다. 전체를 자동 생성하지 않습니다.</p>
    <div class="stage3">
-     <div class="row3"><div class="lab3">지금</div>필요한 서류·정보 확인 (공식 출처 확인 필요)</div>
-     <div class="row3"><div class="lab3">다음</div>담당 기관·파트너 연결 (가상)</div>
-     <div class="row3"><div class="lab3">나중</div>후속 확인 항목 (선택)</div>
+     <div class="row3"><div class="lab3">지금</div><div class="val3">필요한 서류·정보 확인 (공식 출처 확인 필요)</div></div>
+     <div class="row3"><div class="lab3">다음</div><div class="val3">담당 기관·파트너 연결 (가상)</div></div>
+     <div class="row3"><div class="lab3">나중</div><div class="val3">후속 확인 항목 (선택)</div></div>
    </div>
    <div class="note" style="margin-top:12px;">법률·세무 판단은 하지 않습니다. 정보·공식 출처·연결까지만 안내합니다.</div>`,
    cta:()=>`<button class="btn" onclick="completeAftercare()">확인 완료</button>
      <button class="sub" onclick="goto('optout')">이 안내 중지</button>` },
 
  complete:{ title:'완료', enter:()=>ev('closeout_complete'), body:()=>`
-   <div class="bignum"><div class="em">✓</div></div>
+   <div class="celebrate"><div class="ring">✓</div></div>
    <h1 style="text-align:center;">장례 마무리를 도와드렸습니다.</h1>
-   <ul class="done-list">
-     <li>답례 메시지 ${S.completed.includes('message')?'· 가상 발송 완료':'· 미완료'}</li>
-     <li>답례품 ${S.completed.includes('gift')?(S.gift!==null?'· 가상 주문':'· 건너뜀'):'· 선택 안 함'}</li>
-     ${S.aftercarePicked?`<li>후속 도움 · ${S.aftercarePicked} 확인</li>`:''}
-   </ul>
+   <div class="done-list">
+     <div class="dl"><span class="di">✓</span> 답례 메시지 ${S.completed.includes('message')?'· 가상 발송 완료':'· 미완료'}</div>
+     <div class="dl"><span class="di">${S.completed.includes('gift')?'✓':'–'}</span> 답례품 ${S.completed.includes('gift')?(S.gift!==null?'· 가상 주문 '+S.qty+'개':'· 건너뜀'):'· 선택 안 함'}</div>
+     ${S.aftercarePicked?`<div class="dl"><span class="di">✓</span> 후속 도움 · ${S.aftercarePicked==='cemetery'?'장지':S.aftercarePicked==='expert'?'상담':'사후절차'} 확인</div>`:''}
+   </div>
    <div class="note">필요하실 때 다시 확인하실 수 있습니다. 원치 않으시면 모든 후속 안내를 중지할 수 있습니다.</div>`,
    cta:()=>`<button class="btn" onclick="ev('dashboard_view');goto('dashboard')">사업 대시보드 보기</button>
      <button class="sub" onclick="goto('optout')">모든 후속 안내 중지</button>` },
 
  optout:{ title:'안내 중지', enter:()=>ev('followup_optout'), body:()=>`
-   <div class="bignum"><div class="em">🔕</div></div>
+   <div class="celebrate"><div class="ring" style="background:var(--stop-soft);color:var(--stop);">🔕</div></div>
    <h1 style="text-align:center;">선택을 저장했습니다.</h1>
    <p class="desc" style="text-align:center;">추가 안내를 보내지 않습니다.</p>
    <div class="note">언제든 다시 켜실 수 있습니다.</div>`,
@@ -234,17 +267,15 @@ const SC={
 
  dashboard:{ title:'사업 대시보드', body:()=>{
    const cnt=n=>S.events.filter(e=>e.name===n).length;
-   return `<div class="dash">
-   <h1>사업 대시보드 <span class="vbadge">가상 예시</span></h1>
+   const base=Math.max(cnt('closeout_offer_view'),1);
+   const bar=n=>Math.round(cnt(n)/base*100);
+   const fr=(l,n)=>`<div class="fr"><div class="frt"><span class="fl">${l}</span><span class="fv">${cnt(n)}</span></div><div class="bar"><i style="width:${Math.min(100,bar(n))}%"></i></div></div>`;
+   return `<div class="dash"><h1>사업 대시보드 <span class="vbadge">가상 예시</span></h1>
    <p class="desc">기능 사용률이 아니라 완료·경제성·신뢰·현장 운영을 함께 봅니다.</p>
-   <div class="sec">퍼널 <span class="vbadge">이 세션 이벤트 기반</span></div>
+   <div class="sec">퍼널 <span class="vbadge">이 세션 이벤트</span></div>
    <div class="funnel">
-     <div class="fr"><span class="fl">제안 노출</span><span class="fv">${cnt('closeout_offer_view')}</span></div>
-     <div class="fr"><span class="fl">목적별 동의</span><span class="fv">${cnt('consent_select')}</span></div>
-     <div class="fr"><span class="fl">답례 시작</span><span class="fv">${cnt('thank_message_start')}</span></div>
-     <div class="fr"><span class="fl">답례 완료(가상)</span><span class="fv">${cnt('thank_message_complete')}</span></div>
-     <div class="fr"><span class="fl">답례품 거래(가상)</span><span class="fv">${cnt('gift_order_complete')}</span></div>
-     <div class="fr"><span class="fl">완료</span><span class="fv">${cnt('closeout_complete')}</span></div>
+     ${fr('제안 노출','closeout_offer_view')}${fr('목적별 동의','consent_select')}${fr('답례 시작','thank_message_start')}
+     ${fr('답례 완료(가상)','thank_message_complete')}${fr('답례품 거래(가상)','gift_order_complete')}${fr('완료','closeout_complete')}
    </div>
    <div class="sec">경제성</div>
    <div class="kv">
@@ -257,7 +288,7 @@ const SC={
    <div class="kv">
      <div class="k"><div class="kl">최초 제안 거절</div><div class="kn">${cnt('closeout_offer_decline')}</div></div>
      <div class="k"><div class="kl">모든 안내 중지</div><div class="kn">${cnt('followup_optout')}</div></div>
-     <div class="k"><div class="kl">불쾌감·개인정보 민원</div><div class="kn">기준선 측정 전</div></div>
+     <div class="k"><div class="kl">불쾌감·민원</div><div class="kn">기준선 측정 전</div></div>
      <div class="k"><div class="kl">환불·배송 실패</div><div class="kn">기준선 측정 전</div></div>
    </div>
    <div class="sec">장례식장 운영</div>
@@ -265,45 +296,47 @@ const SC={
      <div class="k"><div class="kl">반복 문의 변화</div><div class="kn">기준선 측정 전</div></div>
      <div class="k"><div class="kl">직원 개입시간</div><div class="kn">기준선 측정 전</div></div>
    </div>
-   <div class="note" style="margin-top:14px;">상승 화살표만으로 성공을 표현하지 않습니다. 매출·전환은 비용·민원과 함께 봅니다. 실측값은 모두 ‘기준선 측정 전’입니다.</div>
-   </div>`;
+   <div class="note" style="margin-top:14px;">상승만으로 성공을 판단하지 않습니다. 매출·전환은 비용·민원과 함께 봅니다. 실측값은 모두 ‘기준선 측정 전’입니다.</div></div>`;
    },
    cta:()=>`<button class="btn ghost" onclick="goto('home')">마무리 홈으로</button>` },
 };
 
-// ===== 액션 =====
 function toggleConsent(k){ S.consent[k]=!S.consent[k]; render(); }
-function submitConsent(){ const any=Object.values(S.consent).some(Boolean); if(!any){ declineAll(); return; } ev('consent_select'); goto('home'); }
+function submitConsent(){ if(!Object.values(S.consent).some(Boolean)){ declineAll(); return; } ev('consent_select'); toast('선택한 도움만 받도록 저장했어요'); goto('home'); }
 function declineAll(){ ev('consent_decline_all'); S.optedOut=true; goto('optout'); }
 function setTone(t){ S.tone=t; render(); }
-function completeMessage(){ ev('thank_message_complete'); if(!S.completed.includes('message'))S.completed.push('message');
+function setQty(d){ S.qty=Math.max(1,Math.min(9,S.qty+d)); render(); }
+function completeMessage(){ ev('thank_message_complete'); if(!S.completed.includes('message'))S.completed.push('message'); toast('가상 발송 완료');
   if(S.consent.thanksGift && S.gift===null && !S.completed.includes('gift')){ goto('gift_choice'); } else { goto('home'); } }
 function pickGift(i){ S.gift=i; render(); }
-function orderGift(){ if(S.gift===null)return; ev('gift_order_complete'); if(!S.completed.includes('gift'))S.completed.push('gift'); goto('home'); }
+function orderGift(){ if(S.gift===null)return; ev('gift_order_complete'); if(!S.completed.includes('gift'))S.completed.push('gift'); toast('가상 주문 완료'); goto('home'); }
 function skipGift(){ ev('gift_skip'); S.gift=null; if(!S.completed.includes('gift'))S.completed.push('gift'); goto('home'); }
 function pickAfter(k){ S.aftercarePicked=k; goto('aftercare_detail'); }
-function completeAftercare(){ if(!S.completed.includes('aftercare'))S.completed.push('aftercare'); goto('home'); }
+function completeAftercare(){ if(!S.completed.includes('aftercare'))S.completed.push('aftercare'); toast('확인 완료'); goto('home'); }
 function reopen(){ S.optedOut=false; goto('offer'); }
 
-// ===== 렌더 =====
-function render(){
+function render(animate){
   const sc=SC[S.screen]; if(sc.enter)sc.enter();
   document.getElementById('ptitle').textContent=sc.title;
-  document.getElementById('pbody').innerHTML=sc.body();
+  const body=document.getElementById('pbody');
+  body.innerHTML=sc.body(); body.scrollTop=0;
+  if(animate){ body.classList.remove('anim'); void body.offsetWidth; body.classList.add('anim'); }
   document.getElementById('pcta').innerHTML=sc.cta();
   document.getElementById('back').style.visibility=history.length>1?'visible':'hidden';
-  document.getElementById('pbody').scrollTop=0;
+  // 진행 인디케이터
+  const cur=stepIndex(S.screen);
+  document.getElementById('steps').innerHTML=FLOW.map((_,k)=>`<div class="sd ${k<cur?'done':k===cur?'cur':''}"></div>`).join('');
+  document.getElementById('steplabel').textContent=`${cur+1} / ${FLOW.length} · ${STEPLABEL[S.screen]||''}`;
   renderSide();
 }
 function renderSide(){
-  const order=['offer','consent','home','message_edit','message_review','gift_choice','aftercare_choice','aftercare_detail','complete','dashboard','optout'];
   document.getElementById('sideMeta').innerHTML=
-    `<b>상태</b>: ${S.screen} <br><b>동의</b>: ${Object.entries(S.consent).filter(([,v])=>v).map(([k])=>k).join(', ')||'없음'}<br>`+
-    `<b>완료</b>: ${S.completed.join(', ')||'없음'} <br><b>안내중지</b>: ${S.optedOut?'예':'아니오'}`;
+    `<b>상태</b>: ${S.screen}<br><b>동의</b>: ${Object.entries(S.consent).filter(([,v])=>v).map(([k])=>k).join(', ')||'없음'}<br>`+
+    `<b>완료</b>: ${S.completed.join(', ')||'없음'}<br><b>안내중지</b>: ${S.optedOut?'예':'아니오'}`;
   const ev=document.getElementById('sideEvents');
   ev.innerHTML=S.events.slice(-40).reverse().map(e=>`<div>${e.t} · ${e.name}</div>`).join('')||'<div>이벤트 없음</div>';
 }
-render();
+render(false);
 </script>
 </body>
 </html>
