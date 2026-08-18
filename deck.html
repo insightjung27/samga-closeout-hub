@@ -40,7 +40,7 @@
 
   /* 흐름 (크게) */
   .flow{ display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:14px; }
-  .flow .step{ background:var(--surface); border:1.5px solid var(--border); border-radius:999px; padding:16px 24px; font-weight:800; font-size:clamp(18px,1.9vw,22px); }
+  .flow .step{ background:var(--surface); border:1.5px solid var(--border); border-radius:999px; padding:16px 24px; font-weight:800; font-size:clamp(18px,1.9vw,22px); white-space:nowrap; }
   .flow .step.first{ background:var(--primary); color:#fff; border-color:var(--primary); }
   .flow .arw{ color:var(--secondary); font-weight:800; font-size:22px; }
 
@@ -155,7 +155,12 @@
   <section class="slide">
     <div class="kicker">07 / 10 · 제품 시연</div>
     <h1 class="title">동의부터 완료까지<br><span class="hi">직접 눌러볼 수</span> 있습니다.</h1>
-    <p class="lead">목적별 동의 → 장례 마무리 홈 → 답례 메시지·답례품 → 완료·안내 중지</p>
+    <div class="flow">
+      <span class="step first">목적별 동의</span><span class="arw">→</span>
+      <span class="step">장례 마무리 홈</span><span class="arw">→</span>
+      <span class="step">답례 메시지·답례품</span><span class="arw">→</span>
+      <span class="step">완료·안내 중지</span>
+    </div>
     <div class="bigcta"><a class="btn" href="./prototype.html">프로토타입 보기 →</a></div>
   </section>
 
